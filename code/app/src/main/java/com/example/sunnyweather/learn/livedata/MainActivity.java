@@ -1,8 +1,7 @@
-package com.example.sunnyweather;
+package com.example.sunnyweather.learn.livedata;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
@@ -12,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.sunnyweather.R;
 
 import java.util.Random;
 

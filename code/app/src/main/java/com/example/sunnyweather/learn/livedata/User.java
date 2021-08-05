@@ -1,4 +1,4 @@
-package com.example.sunnyweather;
+package com.example.sunnyweather.learn.livedata;
 
 public class User {
     private String firstName;

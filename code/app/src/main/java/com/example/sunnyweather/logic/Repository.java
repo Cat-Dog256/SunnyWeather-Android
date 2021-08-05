@@ -1,14 +1,19 @@
-package com.example.sunnyweather.logic.dao;
+package com.example.sunnyweather.logic;
 
 import android.util.Log;
 
+import com.example.sunnyweather.logic.dao.PlaceDao;
 import com.example.sunnyweather.logic.model.DailyResponse;
+import com.example.sunnyweather.logic.model.Place;
+import com.example.sunnyweather.logic.model.PlaceResponse;
 import com.example.sunnyweather.logic.model.RealtimeResponse;
 import com.example.sunnyweather.logic.model.Weather;
 import com.example.sunnyweather.logic.network.ApiService;
+import com.example.sunnyweather.logic.network.PlaceService;
 import com.example.sunnyweather.logic.network.WeatherService;
 
 import java.nio.file.WatchEvent;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import androidx.lifecycle.LiveData;
@@ -18,6 +23,35 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Repository {
+    public static LiveData<List<Place>> searchPlace(String query){
+        MutableLiveData<List<Place>> responseLiveData = new MutableLiveData<>();
+        Call<PlaceResponse> call = ApiService.create(PlaceService.class).searchPlaces(query);
+        call.enqueue(new Callback<PlaceResponse>() {
+            @Override
+            public void onResponse(Call<PlaceResponse> call, Response<PlaceResponse> response) {
+                Log.d("PlaceViewModel",response.toString());
+                PlaceResponse placeResponse = response.body();
+                if ("ok".equals(placeResponse.getStatus())){
+                    responseLiveData.postValue(placeResponse.getPlaces());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PlaceResponse> call, Throwable t) {
+
+            }
+        });
+        return responseLiveData;
+    }
+    public static void savePlace(Place place){
+        PlaceDao.getInstance().savePlace(place);
+    }
+    public static Place getSavePlace(){
+        return PlaceDao.getInstance().getSavePlace();
+    }
+    public static Boolean isPlaceSaved(){
+        return PlaceDao.getInstance().isPlaceSaved();
+    }
     public static LiveData<Weather> refreshWeather(String lng, String lat){
         CountDownLatch countDownLatch = new CountDownLatch(2);
         Call<RealtimeResponse> realtimeResponseCall = ApiService.create(WeatherService.class).getRealtimeWeather(lng,lat);
@@ -73,4 +107,6 @@ public class Repository {
         }).start();
         return weatherMutableLiveData;
     }
+
+
 }

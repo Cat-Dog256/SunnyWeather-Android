@@ -1,4 +1,4 @@
-package com.example.sunnyweather;
+package com.example.sunnyweather.learn.livedata;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

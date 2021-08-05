@@ -1,4 +1,157 @@
 package com.example.sunnyweather.logic.model;
 
+import java.util.Date;
+import java.util.List;
+
 public class DailyResponse {
+    private String status;
+    private Result result;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
+    }
+
+    public class Result{
+        private Daily daily;
+
+        public Daily getDaily() {
+            return daily;
+        }
+
+        public void setDaily(Daily daily) {
+            this.daily = daily;
+        }
+    }
+    public class Daily{
+        private List<Temperature> temperature;
+        private List<Skycon> skycon;
+        private LifeIndex life_index;
+
+        public List<Temperature> getTemperature() {
+            return temperature;
+        }
+
+        public void setTemperature(List<Temperature> temperature) {
+            this.temperature = temperature;
+        }
+
+        public List<Skycon> getSkycon() {
+            return skycon;
+        }
+
+        public void setSkycon(List<Skycon> skycon) {
+            this.skycon = skycon;
+        }
+
+        public LifeIndex getLife_index() {
+            return life_index;
+        }
+
+        public void setLife_index(LifeIndex life_index) {
+            this.life_index = life_index;
+        }
+    }
+    public class Temperature{
+        private Float max;
+        private Float min;
+
+        public Float getMax() {
+            return max;
+        }
+
+        public void setMax(Float max) {
+            this.max = max;
+        }
+
+        public Float getMin() {
+            return min;
+        }
+
+        public void setMin(Float min) {
+            this.min = min;
+        }
+    }
+
+    public class Skycon{
+        private String value;
+        private Date date;
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
+    }
+
+    public class LifeIndex{
+        private List<LifeDescription> coldRisk;
+        private List<LifeDescription> carWashing;
+        private List<LifeDescription> ultraviolet;
+        private List<LifeDescription> dressing;
+
+        public List<LifeDescription> getColdRisk() {
+            return coldRisk;
+        }
+
+        public void setColdRisk(List<LifeDescription> coldRisk) {
+            this.coldRisk = coldRisk;
+        }
+
+        public List<LifeDescription> getCarWashing() {
+            return carWashing;
+        }
+
+        public void setCarWashing(List<LifeDescription> carWashing) {
+            this.carWashing = carWashing;
+        }
+
+        public List<LifeDescription> getUltraviolet() {
+            return ultraviolet;
+        }
+
+        public void setUltraviolet(List<LifeDescription> ultraviolet) {
+            this.ultraviolet = ultraviolet;
+        }
+
+        public List<LifeDescription> getDressing() {
+            return dressing;
+        }
+
+        public void setDressing(List<LifeDescription> dressing) {
+            this.dressing = dressing;
+        }
+    }
+   public   class LifeDescription{
+        private String desc;
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+    }
 }
