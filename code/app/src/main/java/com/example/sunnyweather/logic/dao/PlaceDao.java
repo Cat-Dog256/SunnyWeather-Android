@@ -1,4 +1,4 @@
 package com.example.sunnyweather.logic.dao;
 
-public class Repository {
+public class PlaceDao {
 }
